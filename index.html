@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>CK24</title>
+
+    <link rel="stylesheet" href="/node_modules/reveal.js/dist/reset.css" />
+    <link rel="stylesheet" href="/node_modules/reveal.js/dist/reveal.css" />
+    <link rel="stylesheet" href="/node_modules/reveal.js/dist/theme/serif.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="/node_modules/reveal.js/plugin/highlight/monokai.css">
+
+    <style>
+        :root {
+            --r-link-color: #4f46e5;
+        }
+
+        #footer {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            font-size: 75%;
+        }
+
+        #header {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+        }
+
+        #header svg {
+            height: 8rem;
+            width: 8rem;
+        }
+
+        figure figcaption {
+            font-size: 40%;
+        }
+
+        img {
+            padding: 5px;
+            border-radius: 8px;
+            background-color: #fff;
+            border: 0 !important;
+        }
+
+        figure img {
+            margin-bottom: 0;
+        }
+
+        blockquote {
+            font-size: 50%;
+            padding: 5px 15px !important;
+        }
+
+        .highlight {
+            color: #4f46e5;
+        }
+
+        h2 {
+            font-size: 3rem !important;
+            font-weight: bold !important;
+        }
+
+    </style>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>Willkommen</h2>
+            <figure>
+                <img src="img/identity.png" alt>
+                <figcaption>— <a href="https://xkcd.com/1121/">xkcd.com/1121</a></figcaption>
+            </figure>
+        </section>
+
+        <!-- Slide 1, Einleitung -->
+        <section>
+            <h2>Willkommen</h2>
+            <ul>
+                <li class="fragment fade-up">Jim Schmid</li>
+                <li class="fragment fade-up">Software Entwickler bei 1up AG in Luzern (🇨🇭)</li>
+                <li class="fragment fade-up">✉️ <a href="mailto:jim.schmid@1up.io">jim.schmid@1up.io</a></li>
+            </ul>
+        </section>
+
+        <!-- Slide 2, Einleitung -->
+        <section>
+            <h2>Willkommen</h2>
+            <ul>
+                <li class="fragment fade-up">Applikationsentwicklung mit Symfony / Contao</li>
+                <li class="fragment fade-up">Contao Konferenz 2016: Contao 4 as a Bundle</li>
+            </ul>
+        </section>
+
+        <!-- Slide 3, Einleitung -->
+        <section>
+            <h2>Worum gehts?</h2>
+            <img class="fragment fade-up" src="img/example-login.png" style="border: 1px solid rgb(56, 61, 61); border-radius: 10px;" alt>
+        </section>
+
+        <section>
+            <blockquote>
+                <p>
+                    Authentication (AuthN) is the process of verifying that an individual, entity, or website is who or
+                    what it claims to be by determining the validity of one or more authenticators (like passwords,
+                    fingerprints, or security tokens) that are used to back up this claim.
+                </p>
+                <cite>— <a href="https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html">OWASP</a></cite>
+            </blockquote>
+        </section>
+
+        <!-- Slide 4, Einleitung -->
+        <section>
+            <h2>Worum gehts?</h2>
+            <ul>
+                <li>Geschichte</li>
+                <li>Faktoren der Authentifizierung</li>
+                <li>Methoden & Standards</li>
+                <li>Best practises</li>
+                <li>contao.id</li>
+            </ul>
+        </section>
+
+        <!-- Slide 6, Geschichte -->
+        <section>
+            <h2>Geschichte</h2>
+            <figure>
+                <img src="img/polybios.png" height="350" alt>
+                <figcaption>— <a href="https://en.wikipedia.org/wiki/Polybius">en.wikipedia.org/wiki/Polybius</a></figcaption>
+            </figure>
+        </section>
+
+        <!-- Slide 7, Geschichte -->
+        <section>
+            <h2>Geschichte</h2>
+            <blockquote>
+                <p>
+                    Gilead schnitt Efraim die Jordanfurten ab. Und wenn die Flüchtlinge aus Efraim sagten: Ich will hinüber!,
+                    fragten ihn die Männer aus Gilead: Bist du ein Efraimiter? Wenn er Nein sagte, forderten sie ihn auf:
+                    Sag doch einmal Schibbolet! Sagte er dann Sibbolet, weil er es nicht richtig aussprechen konnte, ergriffen
+                    sie ihn und machten ihn dort an den Furten des Jordan nieder. So fielen damals zweiundvierzigtausend
+                    Mann aus Efraim.
+                </p>
+
+                <cite>— Buch der Richter 12,5–6</cite>
+            </blockquote>
+        </section>
+
+        <!-- Slide 8, Geschichte -->
+        <section>
+            <h2>Geschichte</h2>
+            <figure>
+                <img src="img/ctss.webp" height="350" alt>
+                <figcaption>— <a href="https://www.troyhunt.com/passwords-evolved-authentication-guidance-for-the-modern-era/">troyhunt.com</a></figcaption>
+            </figure>
+        </section>
+
+        <!-- Slide 9, Gegenwart -->
+        <section>
+            <h2>Gegenwart</h2>
+            <img class="fragment fade-in" src="img/login-spotify.png" height="350" alt>
+            <img class="fragment fade-in" src="img/login-github.png" height="350" alt>
+            <img class="fragment fade-in" src="img/login-wapo.png" height="350" alt>
+        </section>
+
+        <!-- Slide 10, Faktoren -->
+        <section>
+            <h2>Die drei Faktoren der Authentifizierung</h2>
+            <ul>
+                <li class="fragment">Knowledge (Wissen) <span class="fragment highlight">"something you know"</span></li>
+                <li class="fragment">Ownership: (Besitz) <span class="fragment highlight">"something you have"</span></li>
+                <li class="fragment">Inherence: (Inheränz) <span class="fragment highlight">"something you are"</span></li>
+            </ul>
+        </section>
+
+        <!-- Slide 11, Faktoren / Knowledge -->
+        <!-- PIN: Personal Identification Number -->
+        <!-- PUK: Personal Unlock Key !-->
+        <section>
+            <h2>💡 something you know</h2>
+            <ul>
+                <li>Passwörter</li>
+                <li>PINS / PUKS</li>
+                <li>Sicherheitsfragen</li>
+            </ul>
+        </section>
+
+        <!-- Slide 12, Faktoren / Besitz -->
+        <section>
+            <h2>🔑 something you have</h2>
+            <ul>
+                <li>OTP-/U2F Tokens</li>
+                <li>E-Mail</li>
+                <li>SMS / Telefon</li>
+                <li>Client-Zertifikate</li>
+            </ul>
+        </section>
+
+        <!-- Slide 13, Faktoren / Inheränz -->
+        <section>
+            <h2>☝️ something you are</h2>
+            <ul>
+                <li>Fingerabdrücke</li>
+                <li>Gesichtserkennung & Iris-Scans</li>
+                <li>Spracherkennung</li>
+            </ul>
+        </section>
+
+        <!-- Slide 14, weitere Faktoren -->
+        <section>
+            <h2>Weitere Faktoren</h2>
+            <ul>
+                <li class="fragment">Location (Ort) <span class="fragment highlight">"somewhere you are"</span></li>
+                <li class="fragment">Behaviour (Verhalten) <span class="fragment highlight">"something you do"</span></li>
+            </ul>
+        </section>
+
+        <!-- Slide 15, Faktoren / Besitz -->
+        <section>
+            <h2>🌍 somewhere you are</h2>
+            <ul>
+                <li>IP-Adresse</li>
+                <li>Geolocation</li>
+                <li>Geofencing</li>
+            </ul>
+        </section>
+
+        <!-- Slide 16, Faktoren / Besitz -->
+        <section>
+            <h2>⌨️ something you do</h2>
+            <ul>
+                <li>Verhaltensanalyse</li>
+                <li>Tastenanschlags- und Mausdynamik</li>
+                <li>Gang-Analyse</li>
+            </ul>
+        </section>
+
+        <!-- Slide 17, Übergang -->
+        <section>
+            <h2>Passwörter</h2>
+            <ul style="list-style-type: none; margin-bottom: 1rem;">
+                <li class="fragment">✅ Einfach zu verstehen</li>
+                <li class="fragment">✅ Einfach zu implementieren*</li>
+                <li class="fragment">❌ Neigung zu schwachen Passwörtern</li>
+                <li class="fragment">❌ Wiederverwendung zwischen System</li>
+                <li class="fragment">❌ Anfällig für Phishing</li>
+            </ul>
+        </section>
+
+        <!-- Slide 17, OWASP -->
+        <section>
+            <h2>MFA (2FA)</h2>
+            <ul>
+                <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html">OWASP</a>-Empfehlungen</li>
+                <li>AuthN erfolgt über mehrere Faktoren</li>
+                <li>Unabhängige Faktoren verwenden</li>
+            </ul>
+        </section>
+
+        <!-- Slide 18, OWASP -->
+        <section>
+            <blockquote>
+                <p>
+                    <strong>Any</strong> MFA is better than <strong>no</strong> MFA.
+                </p>
+
+                <cite>— <a href="https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html">OWASP</a></cite>
+            </blockquote>
+        </section>
+
+        <section>
+            <h2>Gängige (zweite) Faktoren</h2>
+            <ul>
+                <li>E-Mail</li>
+                <li>TOTP</li>
+                <li>Passkeys</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>E-Mail Codes</h2>
+            <small>Eigentlich nur der Vollständigkeitshalber</small>
+            <figure>
+                <img src="img/email-code.png" height="350">
+            </figure>
+        </section>
+
+        <section>
+            <h2>E-Mail Codes</h2>
+            <ul style="list-style-type: none; margin-bottom: 1rem;">
+                <li class="fragment">✅ Einfach zu implementieren</li>
+                <li class="fragment">✅ Braucht keine zusätzlichen Geräte</li>
+                <li class="fragment">❌ Passwörter werden häufig mehrfachverwendet</li>
+                <li class="fragment">❌ Verlässt sich auf die Sicherheit des E-Mail Kontos</li>
+                <li class="fragment">❌ Anfällig für Phishing</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>E-Mail Codes</h2>
+            <ul>
+                <li>Gültigkeit</li>
+                <li>Sollte nur einmal verwendet werden können</li>
+                <li>Mailversand ist asynchron</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Time-based one-time password (TOTP)</h2>
+            <div>
+                <img class="fragment" src="img/totp.png" height="350">
+                <img class="fragment" src="img/totp-2.jpg" height="350">
+            </div>
+        </section>
+
+        <section>
+            <h2>Time-based one-time password (TOTP)</h2>
+            <ul style="list-style-type: none; margin-bottom: 1rem;">
+                <li class="fragment">✅ Meist separierte Geräte</li>
+                <li class="fragment">✅ Besserer Phishing-Schutz durch Zeitfaktor</li>
+                <li class="fragment">✅ Endgeräte sind meist durch einen PIN geschützt</li>
+                <li class="fragment">❌ Benötigt ein zusätzliches Gerät</li>
+                <li class="fragment">❌ Endgeräte können verloren gehen (???)</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Time-based one-time password (TOTP)</h2>
+            <img src="img/totp-activate.png" height="350">
+        </section>
+
+        <!-- https://en.wikipedia.org/wiki/HMAC-based_one-time_password#parameters -->
+        <section>
+            <h2>HOTP Parameters</h2>
+            <ol>
+                <li>Kryptographische Hashing-Funktion (<code>H</code>)</li>
+                <li>Secret Key (<code>K</code>)</li>
+                <li>Counter (<code>C</code>)</li>
+                <li>HOTP-Länge (6-10, meist 6)</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>HOTP Algorithmus</h2>
+            <pre>
+
+                # C: Counter
+                # T: Zeit
+                # H: Algorithmus
+                # K: Secret
+
+                C = (T - T0) / Tx
+                Code = H(K, C)
+            </pre>
+        </section>
+
+        <section>
+            <h2>Passkeys</h2>
+            <img class="fragment fade-in" src="img/yubikey.png" height="350" alt>
+            <img class="fragment fade-in" src="img/faceid.png" height="350" alt>
+        </section>
+
+        <section>
+            <h2>Passkeys</h2>
+            <ul>
+                <li>Hardware-basierte Authentifizierung</li>
+                <li>Public-Key Kryptographie-Verfahren</li>
+                <li>U2F → FIDO2</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>WebAuthN</h2>
+            <ul>
+                <li>Web-API für die Integration von FIDO2-Geräten</li>
+                <li>W3C-Standard</li>
+                <li>Wird von allen gängigen Browsern unterstützt</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>WebAuthN</h2>
+            <figure>
+                <img src="img/webauthn.png" alt>
+            </figure>
+        </section>
+
+        <section>
+            <h2>WebAuthN</h2>
+
+            <figure>
+                <img src="img/caniuse-webauthn.png" height="350" alt>
+                <figcaption>— <a href="https://caniuse.com/?search=webauthn">caniuse.com</a></figcaption>
+            </figure>
+        </section>
+
+        <section>
+            <h2>Passkeys</h2>
+            <ul style="list-style-type: none; margin-bottom: 1rem;">
+                <li class="fragment">✅ Knopfdruck statt manuelle Code-Eingabe</li>
+                <li class="fragment">✅ Bester Schutz gegen Phising</li>
+                <li class="fragment">✅ Abgeschirmtes Gerät</li>
+                <li class="fragment">❌ Geräte können meist ohne PIN gebraucht werden</li>
+                <li class="fragment">❌ Anfällig für Verlust, Recovery Key nötig</li>
+            </ul>
+        </section>
+
+
+
+
+
+        <!-- https://contao.org/en/news/contao-4_6_0 -->
+        <section>
+            <h2>Contao</h2>
+
+            <ul>
+                <li class="fragment">Passwörter</li>
+                <li class="fragment">TOTP für 2FA</li>
+                <li class="fragment">Passkeys/FIDO2 <span class="fragment" style="display: inline-block; transform-origin: center; transform: rotate(-10deg); color: #4f46e5; font-size: 50%">coming soon!</span></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Contao / TOTP</h2>
+            <figure>
+                <img src="img/contao-totp.png" alt height="350">
+            </figure>
+        </section>
+
+        <section>
+            <h2>Contao / Passkeys</h2>
+            <figure>
+                <img src="img/contao-passkey.png" alt height="350">
+            </figure>
+        </section>
+
+
+
+
+
+        <section>
+            <h2>Authentifizierung über Drittsysteme</h2>
+            <figure>
+                <img src="img/login-wapo.png" alt height="350">
+            </figure>
+        </section>
+
+        <section>
+            <h2>Authentifizierung über Drittsysteme</h2>
+            <ul>
+                <li>OAuth2</li>
+                <li>OpenID Connect (OIDC)</li>
+                <li>SAML</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Authentifizierung über Drittsysteme</h2>
+            <ul>
+                <li>Initiierung eines AuthN-Flows über den <strong>SP/Client</strong></li>
+                <li>Authentifizierung auf <strong>IdP</strong></li>
+                <li>Erhalt eines Access-Tokens</li>
+                <li>Mittels Access-Token können per Schnittstelle auf freigegebene Ressourcen zugegriffen werden </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>contao.id</h2>
+            <figure>
+                <img src="img/contao-id.webp" alt height="350">
+            </figure>
+        </section>
+
+        <section>
+            <h2>contao.id</h2>
+            <figure>
+                <img src="img/contao-id-manager.webp" alt height="350">
+            </figure>
+        </section>
+
+        <section>
+            <h2>contao.id</h2>
+            <figure>
+                <img src="img/contao-id-configuration.png" alt height="350">
+            </figure>
+        </section>
+
+        <section>
+            <h2>contao.id</h2>
+            <figure>
+                <img src="img/contao-id-login.webp" alt height="350">
+            </figure>
+        </section>
+
+        <section>
+            <h2>contao.id</h2>
+            <figure>
+                <img src="img/contao-id-backend.png" alt height="350">
+            </figure>
+        </section>
+    </div>
+
+    <footer id="footer">
+        Jim Schmid<br>
+        <a href="https://contao.id">contao.id</a>
+    </footer>
+
+    <header id="header">
+        <?xml version="1.0" encoding="UTF-8"?>
+        <svg viewBox="0 0 153.822 153.822">
+            <defs>
+                <style>
+                    .cls-1 { fill: url(#Unbenannter_Verlauf_4); }
+                    .cls-2 { fill: #31285b; }
+                    .cls-3 { fill: #fff; }
+                </style>
+                <linearGradient id="Unbenannter_Verlauf_4" data-name="Unbenannter Verlauf 4" x1="76.911" y1="156.08" x2="76.911" y2="1.533" gradientTransform="translate(0 155.276) scale(1 -1)" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#66c5e8"/>
+                    <stop offset="1" stop-color="#4e4795"/>
+                </linearGradient>
+            </defs>
+            <rect class="cls-1" width="153.822" height="153.822" rx="9.358" ry="9.358"/>
+            <g>
+                <path class="cls-3" d="M37.471,122.793c.384-.708.916-1.256,1.597-1.646.68-.39,1.459-.584,2.337-.584,1.13,0,2.066.283,2.806.848s1.237,1.358,1.489,2.378h-2.485c-.132-.394-.354-.705-.667-.929-.313-.226-.699-.338-1.16-.338-.658,0-1.18.24-1.564.716s-.576,1.155-.576,2.032c0,.868.192,1.539.576,2.017.384.477.906.715,1.564.715.932,0,1.541-.417,1.827-1.25h2.485c-.252.987-.751,1.771-1.498,2.354-.746.581-1.678.872-2.798.872-.878,0-1.657-.194-2.337-.584-.681-.39-1.213-.939-1.597-1.646-.384-.708-.576-1.534-.576-2.478s.192-1.769.576-2.477h.001Z"/>
+                <path class="cls-3" d="M49.076,129.394c-.703-.39-1.254-.941-1.654-1.654-.401-.713-.601-1.536-.601-2.47s.206-1.755.617-2.469.974-1.264,1.688-1.654c.713-.39,1.508-.584,2.386-.584s1.674.194,2.387.584,1.276.941,1.687,1.654c.412.713.618,1.536.618,2.469s-.212,1.756-.634,2.47c-.423.713-.994,1.264-1.712,1.654s-1.522.584-2.411.584c-.878,0-1.668-.194-2.37-.584h-.001ZM52.623,127.666c.367-.203.661-.507.881-.913.219-.406.329-.9.329-1.482,0-.866-.228-1.533-.683-1.999-.455-.466-1.012-.7-1.671-.7s-1.21.234-1.654.7-.667,1.133-.667,1.999.216,1.534.65,2c.433.467.98.699,1.638.699.417,0,.809-.101,1.177-.304Z"/>
+                <path class="cls-3" d="M65.585,121.608c.669.686,1.004,1.644,1.004,2.872v5.35h-2.304v-5.037c0-.724-.182-1.282-.544-1.67-.362-.39-.856-.584-1.481-.584-.636,0-1.139.194-1.506.584-.368.389-.552.946-.552,1.67v5.037h-2.304v-9.119h2.304v1.135c.307-.395.7-.705,1.177-.93.477-.225,1.002-.337,1.572-.337,1.087,0,1.964.344,2.634,1.029Z"/>
+                <path class="cls-3" d="M71.461,122.604v4.412c0,.307.074.53.222.666.148.137.397.206.749.206h1.07v1.942h-1.449c-1.942,0-2.913-.943-2.913-2.832v-4.395h-1.087v-1.893h1.087v-2.255h2.321v2.255h2.041v1.893h-2.041Z"/>
+                <path class="cls-3" d="M75.124,122.786c.367-.713.867-1.262,1.498-1.647.631-.383,1.336-.576,2.115-.576.68,0,1.275.137,1.786.411.509.274.92.62,1.227,1.037v-1.3h2.32v9.119h-2.32v-1.333c-.296.428-.707.782-1.227,1.061-.522.28-1.123.42-1.803.42-.768,0-1.468-.198-2.098-.593-.631-.394-1.131-.952-1.498-1.67-.368-.719-.552-1.545-.552-2.477,0-.922.184-1.739.552-2.452ZM81.419,123.831c-.219-.401-.516-.708-.887-.922-.374-.215-.773-.321-1.203-.321s-.822.104-1.184.313c-.363.208-.656.513-.881.913-.225.401-.337.875-.337,1.424s.112,1.028.337,1.441c.225.411.521.726.889.946.367.219.76.329,1.176.329.43,0,.829-.106,1.203-.321.372-.214.668-.521.887-.922s.331-.881.331-1.441-.112-1.039-.331-1.439h0Z"/>
+                <path class="cls-3" d="M88.004,129.394c-.703-.39-1.254-.941-1.654-1.654s-.6-1.536-.6-2.47.206-1.755.618-2.469.973-1.264,1.686-1.654,1.509-.584,2.387-.584,1.674.194,2.387.584,1.276.941,1.688,1.654.617,1.536.617,2.469-.211,1.756-.634,2.47c-.422.713-.993,1.264-1.711,1.654s-1.523.584-2.412.584c-.879,0-1.668-.194-2.371-.584h0ZM91.551,127.666c.368-.203.662-.507.881-.913.22-.406.33-.9.33-1.482,0-.866-.228-1.533-.683-1.999s-1.013-.7-1.67-.7-1.211.234-1.654.7c-.445.466-.667,1.133-.667,1.999s.217,1.534.65,2c.434.467.98.699,1.638.699.417,0,.809-.101,1.176-.304h-.001Z"/>
+                <path class="cls-3" d="M96.819,129.558c-.27-.258-.404-.579-.404-.962s.134-.706.404-.964c.269-.258.611-.387,1.028-.387.406,0,.741.129,1.004.387s.395.579.395.964-.132.705-.395.962-.598.387-1.004.387c-.417,0-.759-.129-1.028-.387Z"/>
+                <path class="cls-3" d="M101.263,119.238c-.27-.257-.404-.578-.404-.962s.134-.705.404-.962c.269-.258.606-.388,1.012-.388s.743.13,1.013.388c.269.258.403.579.403.962s-.134.706-.403.962c-.27.259-.607.388-1.013.388s-.743-.129-1.012-.388ZM103.411,120.711v9.119h-2.305v-9.119h2.305Z"/>
+                <path class="cls-3" d="M105.641,122.786c.367-.713.87-1.262,1.506-1.647.636-.383,1.344-.576,2.124-.576.592,0,1.157.129,1.695.387s.966.6,1.284,1.029v-4.329h2.337v12.18h-2.337v-1.35c-.285.45-.685.813-1.201,1.087-.517.274-1.114.411-1.795.411-.768,0-1.471-.198-2.107-.593-.636-.394-1.139-.952-1.506-1.67s-.551-1.545-.551-2.477c0-.922.184-1.739.551-2.452ZM111.937,123.831c-.219-.401-.516-.708-.888-.922-.374-.215-.773-.321-1.202-.321s-.823.104-1.185.313-.656.513-.881.913c-.225.401-.337.875-.337,1.424s.113,1.028.337,1.441c.225.411.521.726.889.946.367.219.759.329,1.176.329.429,0,.828-.106,1.202-.321.373-.214.669-.521.888-.922s.33-.881.33-1.441-.111-1.039-.33-1.439h0Z"/>
+            </g>
+            <g>
+                <path class="cls-2" d="M81.846,62.103c-2.694-.425-4.816-2.681-5.1-5.393-.092-.882.004-1.731.252-2.511.267-.839-.363-1.692-1.243-1.693h-.013c-7.083,0-12.773,5.961-12.327,13.14.382,6.151,5.388,11.157,11.539,11.539,7.179.446,13.14-5.245,13.14-12.327,0-.918-.103-1.81-.296-2.669s-1.182-1.23-1.949-.796c-1.153.652-2.538.942-4.002.711h-.001Z"/>
+                <path class="cls-2" d="M58.974,101.519c-.929,0-1.871-.225-2.745-.7-2.302-1.25-4.502-2.736-6.52-4.403-7.155-5.877-12.217-14.243-14.051-23.322-1.93-9.347-.476-19.359,4.109-27.737,1.254-2.31,2.732-4.496,4.403-6.521,2.025-2.454,5.656-2.802,8.112-.777,2.454,2.026,2.802,5.657.777,8.112-.598.724-1.168,1.486-1.694,2.264-3.266,4.811-5.029,10.604-5.013,16.421-.008,4.872,1.211,9.723,3.543,14.001,2.696,4.975,6.86,9.139,11.836,11.835,5.234,2.909,3.161,10.795-2.755,10.826h-.002Z"/>
+                <path class="cls-2" d="M79.315,105.578c-7.244-.227-7.807-10.523-.575-11.495.977-.099,1.958-.249,2.916-.445,13.426-2.612,23.622-15.097,23.451-28.782.142-11.574-7.255-22.671-17.946-27.073-2.673-1.133-5.531-1.862-8.421-2.154-3.166-.321-5.472-3.148-5.151-6.314.322-3.166,3.146-5.473,6.314-5.151,2.707.275,5.385.82,7.986,1.628,19.946,6.117,32.205,26.885,27.911,47.301-3.384,17.367-18.804,31.213-36.485,32.484h0Z"/>
+                <circle class="cls-2" cx="62.253" cy="32.324" r="6.13"/>
+            </g>
+        </svg>
+    </header>
+</div>
+
+<script src="/node_modules/reveal.js/dist/reveal.js"></script>
+
+<script>
+    Reveal.initialize({
+        hash: true,
+    });
+</script>
+</body>
+</html>
