@@ -82,9 +82,9 @@
         <section>
             <h2>Willkommen</h2>
             <ul>
-                <li class="fragment fade-up">Jim Schmid</li>
-                <li class="fragment fade-up">Software Entwickler bei 1up AG in Luzern (🇨🇭)</li>
-                <li class="fragment fade-up">✉️ <a href="mailto:jim.schmid@1up.io">jim.schmid@1up.io</a></li>
+                <li>Jim Schmid</li>
+                <li>Software Entwickler bei 1up AG in Luzern (🇨🇭)</li>
+                <li>✉️ <a href="mailto:jim.schmid@1up.io">jim.schmid@1up.io</a></li>
             </ul>
         </section>
 
@@ -117,12 +117,12 @@
         <!-- Slide 9, Gegenwart -->
         <section>
             <h2>Ausweis</h2>
-            <img class="fragment fade-in" src="img/pass-id.jpg" height="350" alt>
+            <img src="img/pass-id.jpg" height="350" alt>
         </section>
 
         <section>
             <h2>Unterschrift</h2>
-            <img class="fragment fade-in" src="img/unterschrift.jpg" height="350" alt>
+            <img src="img/unterschrift.jpg" height="350" alt>
         </section>
 
 
@@ -141,11 +141,11 @@
 
         <!-- Slide 4, Einleitung -->
         <section>
-            <h2>Identifikationsnachweis</h2>
+            <h2>Inhalt</h2>
             <ul>
                 <li>Beispiele aus der Geschichte</li>
                 <li>Faktoren der Authentifizierung</li>
-                <li>Methoden & Standards</li>
+                <li>Authentifikatoren</li>
                 <li>Best practises</li>
                 <li>contao.id</li>
             </ul>
@@ -188,9 +188,9 @@
         <!-- Slide 9, Gegenwart -->
         <section>
             <h2>Gegenwart</h2>
-            <img class="fragment fade-in" src="img/login-spotify.png" height="350" alt>
-            <img class="fragment fade-in" src="img/login-github.png" height="350" alt>
-            <img class="fragment fade-in" src="img/login-wapo.png" height="350" alt>
+            <img src="img/login-spotify.png" height="350" alt>
+            <img src="img/login-github.png" height="350" alt>
+            <img src="img/login-wapo.png" height="350" alt>
         </section>
 
         <section>
@@ -234,9 +234,9 @@
         <section>
             <h2>🔑 something you have</h2>
             <ul>
-                <li>OTP-/U2F Tokens</li>
+                <li>Security Tokens</li>
                 <li>E-Mail</li>
-                <li>SMS, Apps, Telefon</li>
+                <li>SMS, Apps</li>
                 <li>Client-Zertifikate</li>
             </ul>
         </section>
@@ -276,7 +276,6 @@
             <ul>
                 <li>Verhaltensanalyse</li>
                 <li>Tastenanschlags- und Mausdynamik</li>
-                <li>Gang-Analyse</li>
             </ul>
         </section>
 
@@ -284,9 +283,26 @@
         <section>
             <h2>MFA (2FA)</h2>
             <ul>
-                <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Multifactor_Authentication_Cheat_Sheet.html">OWASP</a>-Empfehlungen</li>
-                <li>AuthN erfolgt über mehrere Faktoren</li>
+                <li>Verkettung von Authentikatoren</li>
+                <li>Alle Authentikatoren müssen erfüllt werden</li>
                 <li>Unabhängige Faktoren verwenden</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Beispiel 2FA</h2>
+            <ol>
+                <li>Login mit Passwort (<span class="highlight">something you know</span>)</li>
+                <li>Bestätigung mit Security Key (<span class="highlight">something you have</span>)</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Beispiel 3FA</h2>
+            <ul>
+                <li>Entsperren mittels PIN... (<span class="highlight">something you know</span>)</li>
+                <li>... eines Smartphones (<span class="highlight">something you have</span>)</li>
+                <li>und anschliessender FaceID (<span class="highlight">something you are</span>)</li>
             </ul>
         </section>
 
@@ -302,7 +318,7 @@
         </section>
 
         <section>
-            <h2>Gängige (zweite) Faktoren</h2>
+            <h2>Gängige Authentifikatoren</h2>
             <ul>
                 <li>E-Mail</li>
                 <li>TOTP</li>
@@ -311,30 +327,21 @@
         </section>
 
         <section>
-            <h2>E-Mail Codes</h2>
-            <small>Eigentlich nur der Vollständigkeitshalber</small>
+            <h2>E-Mail</h2>
             <figure>
                 <img src="img/email-code.png" height="350">
+                <img src="img/email-login.png" height="350">
             </figure>
         </section>
 
         <section>
-            <h2>E-Mail Codes</h2>
+            <h2>E-Mail</h2>
             <ul style="list-style-type: none; margin-bottom: 1rem;">
                 <li class="fragment">✅ Einfach zu implementieren</li>
                 <li class="fragment">✅ Braucht keine zusätzlichen Geräte</li>
                 <li class="fragment">❌ Passwörter werden häufig mehrfachverwendet</li>
                 <li class="fragment">❌ Verlässt sich auf die Sicherheit des E-Mail Kontos</li>
                 <li class="fragment">❌ Anfällig für Phishing</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>E-Mail Codes</h2>
-            <ul>
-                <li>Gültigkeit</li>
-                <li>Sollte nur einmal verwendet werden können</li>
-                <li>Mailversand ist asynchron</li>
             </ul>
         </section>
 
@@ -360,31 +367,12 @@
         <section>
             <h2>Time-based one-time password (TOTP)</h2>
             <img src="img/totp-activate.png" height="350">
-        </section>
-
-        <!-- https://en.wikipedia.org/wiki/HMAC-based_one-time_password#parameters -->
-        <section>
-            <h2>HOTP Parameters</h2>
-            <ol>
-                <li>Kryptographische Hashing-Funktion (<code>H</code>)</li>
-                <li>Secret Key (<code>K</code>)</li>
-                <li>Counter (<code>C</code>)</li>
-                <li>HOTP-Länge (6-10, meist 6)</li>
-            </ol>
+            <img src="img/totp-app.jpg" height="350">
         </section>
 
         <section>
-            <h2>HOTP Algorithmus</h2>
-            <pre>
-
-                # C: Counter
-                # T: Zeit
-                # H: Algorithmus
-                # K: Secret
-
-                C = (T - T0) / Tx
-                Code = H(K, C)
-            </pre>
+            <h2>Time-based one-time password (TOTP)</h2>
+            <img src="img/totp-input.png" height="350">
         </section>
 
         <section>
@@ -405,8 +393,8 @@
         <section>
             <h2>WebAuthN</h2>
             <ul>
-                <li>Web-API für die Integration von FIDO2-Geräten</li>
                 <li>W3C-Standard</li>
+                <li>Web-API für die Integration von Passkeys</li>
                 <li>Wird von allen gängigen Browsern unterstützt</li>
             </ul>
         </section>
@@ -414,7 +402,14 @@
         <section>
             <h2>WebAuthN</h2>
             <figure>
-                <img src="img/webauthn.png" alt>
+                <img src="img/passkey-login.png" alt>
+            </figure>
+        </section>
+
+        <section>
+            <h2>WebAuthN</h2>
+            <figure>
+                <img src="img/passkey-promt.png" alt>
             </figure>
         </section>
 
@@ -529,7 +524,7 @@
             <h2>contao.id / Die Lösung</h2>
             <ul>
                 <li class="fragment">Zentraler Login-Server</li>
-                <li class="fragment">Implementierung AuthN best practises</li>
+                <li class="fragment">Dedizierte Accounts</li>
                 <li class="fragment">Einfaches on/off-boarding von neuen Accounts</li>
             </ul>
         </section>
@@ -538,9 +533,9 @@
             <h2>contao.id</h2>
             <ul>
                 <li>Erster Commit Dezember 2020</li>
-                <li>Rewrite und Rebranding im September 2022</li>
-                <li>Im produktiven Einsatz seit Dezember 2022</li>
-                <li class="fragment">Veröffentlichung <span class="fragment" style="display: inline-block; transform-origin: center; transform: rotate(-10deg); color: #4f46e5; font-size: 50%">auf die CK24! 🎉</span></li>
+                <li>Rebranding im September 2022</li>
+                <li>Im produktiven Einsatz seit Dezember April 2020</li>
+                <li class="fragment">Veröffentlichung <span class="fragment" style="display: inline-block; transform-origin: center; transform: rotate(-10deg); color: #4f46e5; font-size: 50%">jetzt! 🎉</span></li>
             </ul>
         </section>
 
